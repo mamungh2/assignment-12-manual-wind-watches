@@ -12,7 +12,7 @@ const MyOrders = () => {
     const valueArr = Object.values(loggedInUser);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders/byName', {
+        fetch('https://glacial-forest-82707.herokuapp.com/orders/byName', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

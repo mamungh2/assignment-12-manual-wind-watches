@@ -16,7 +16,7 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
-                const newUser = { email: email, displayName: name };
+                const newUser = { email, displayName: name };
                 setUser(newUser);
                 // save user to database
                 saveUser(email, name);
@@ -41,7 +41,7 @@ const useFirebase = () => {
     // save user to database
     const saveUser = (email, displayName) => {
         const user = { email, displayName };
-        fetch('http://localhost:5000/users', {
+        fetch('https://glacial-forest-82707.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -57,7 +57,7 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const destination = location?.state?.from || '/';
-                history.push(destination);
+                history.replace(destination);
                 setAuthError('');
             })
             .catch((error) => {
@@ -68,6 +68,7 @@ const useFirebase = () => {
 
     // check whether a user logged in or not
     useEffect(() => {
+        setIsLoading(true);
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
@@ -80,9 +81,10 @@ const useFirebase = () => {
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://glacial-forest-82707.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
+            .catch(() => { })
     }, [user.email]);
 
     // logout a user

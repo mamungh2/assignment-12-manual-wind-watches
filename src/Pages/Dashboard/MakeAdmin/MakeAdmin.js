@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     // function to update a user admin 
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://glacial-forest-82707.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

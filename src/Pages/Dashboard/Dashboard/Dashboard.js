@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import Pay from '../Pay/Pay';
 import DashboardHome from '../DashboardHome/DashboardHome';
 import Review from '../Review/Review';
@@ -55,6 +55,7 @@ function Dashboard(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
+
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -103,34 +104,33 @@ function Dashboard(props) {
                 <Toolbar />
 
                 <Switch>
-                    <Route exact path={path}>
-                        <DashboardHome></DashboardHome>
-                    </Route>
-                    <Route path={`${path}/pay`}>
-                        <Pay></Pay>
-                    </Route>
-                    <Route path={`${path}/myorders`}>
-                        <MyOrders></MyOrders>
-                    </Route>
-                    <Route path={`${path}/review`}>
-                        <Review></Review>
-                    </Route>
-
-                    <AdminRoute path={`${path}/manageAllOrders`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/AddProduct`}>
-                        <AddProduct></AddProduct>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/manageProducts`}>
-                        <ManageProducts></ManageProducts>
-                    </AdminRoute>
-                    <Route path={`${path}/*`}>
-                        <NotFound></NotFound>
-                    </Route>
+                    {!admin ? <Box>
+                        <Route exact path={path}>
+                            <DashboardHome></DashboardHome>
+                        </Route>
+                        <Route path={`${path}/pay`}>
+                            <Pay></Pay>
+                        </Route>
+                        <Route path={`${path}/myOrders`}>
+                            <MyOrders></MyOrders>
+                        </Route>
+                        <Route path={`${path}/review`}>
+                            <Review></Review>
+                        </Route>
+                    </Box> : <Box>
+                        <AdminRoute path={`${path}/manageAllOrders`}>
+                            <ManageAllOrders></ManageAllOrders>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/AddProduct`}>
+                            <AddProduct></AddProduct>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/makeAdmin`}>
+                            <MakeAdmin></MakeAdmin>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageProducts`}>
+                            <ManageProducts></ManageProducts>
+                        </AdminRoute>
+                    </Box>}
                 </Switch>
             </Box>
         </Box>

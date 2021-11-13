@@ -26,16 +26,24 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <img style={{ width: '125px' }} src={companylogo} alt="" />
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h5" sx={{ ml: 3 }} component="div">
                         Manual Wind Watches
                     </Typography>
-                    {
-                        !user?.email ? <Link style={{ textDecoration: 'none', color: 'white' }} to="/login"><Button color="inherit">Login</Button></Link> :
-                            <Box>
-                                <Link style={{ textDecoration: 'none', color: 'white' }} to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
-                                <Button onClick={logOut} color="inherit">Logout</Button>
-                            </Box>
-                    }
+                    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        {user.email && <Typography style={{ color: 'yellow', paddingRight: '8px' }}>{user.displayName}</Typography>}
+                        {
+                            !user?.email ?
+                                <Box>
+                                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/"><Button color="inherit">Home</Button></Link>
+                                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/login"><Button color="inherit">Login</Button></Link>
+                                </Box> :
+                                <Box>
+                                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/"><Button color="inherit">Home</Button></Link>
+                                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
+                                    <Button onClick={logOut} color="inherit">Logout</Button>
+                                </Box>
+                        }
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>

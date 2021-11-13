@@ -8,7 +8,7 @@ const ManageProducts = () => {
     const { isLoading } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://glacial-forest-82707.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [products]);

@@ -1,8 +1,10 @@
-import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import { Button, Container, Grid, TextField, Typography, Box, CircularProgress } from '@mui/material';
 import React, { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 const AddProduct = () => {
     const [productData, setProductData] = useState({});
+    const { isLoading } = useAuth();
 
     // get product data from input field and set to state
     const handleOnBlur = e => {
@@ -15,7 +17,7 @@ const AddProduct = () => {
 
     // function for submitting a product to database
     const handleProductSubmit = e => {
-        fetch('http://localhost:5000/products', {
+        fetch('https://glacial-forest-82707.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -34,49 +36,52 @@ const AddProduct = () => {
         console.log(productData);
     }
     return (
-        <Container>
-            <Typography variant="h3" gutterBottom>Add Product</Typography>
-            <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center' }}>
-                <Grid item xs={12} sm={12} md={8}>
-                    <form onSubmit={handleProductSubmit}>
-                        <TextField
-                            sx={{ width: '75%', m: 1 }}
-                            id="standard-basic"
-                            label="Product Name"
-                            variant="standard"
-                            name="name"
-                            onBlur={handleOnBlur}
-                        />
-                        <TextField
-                            sx={{ width: '75%', m: 1 }}
-                            id="standard-basic"
-                            label="Price"
-                            variant="standard"
-                            name="price"
-                            onBlur={handleOnBlur}
-                        />
-                        <TextField
-                            sx={{ width: '75%', m: 1 }}
-                            id="outlined-multiline-static"
-                            label="Product Description"
-                            multiline
-                            rows={4}
-                            name="description"
-                            onBlur={handleOnBlur}
-                        />
-                        <TextField
-                            sx={{ width: '75%', m: 1 }}
-                            id="standard-basic"
-                            label="Image URL"
-                            variant="standard"
-                            name="image"
-                            onBlur={handleOnBlur}
-                        />
-                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Submit</Button>
-                    </form>
+        <Box>
+            {!isLoading && <Container>
+                <Typography variant="h3" gutterBottom>Add Product</Typography>
+                <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item xs={12} sm={12} md={8}>
+                        <form onSubmit={handleProductSubmit}>
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Product Name"
+                                variant="standard"
+                                name="name"
+                                onBlur={handleOnBlur}
+                            />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Price"
+                                variant="standard"
+                                name="price"
+                                onBlur={handleOnBlur}
+                            />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="outlined-multiline-static"
+                                label="Product Description"
+                                multiline
+                                rows={4}
+                                name="description"
+                                onBlur={handleOnBlur}
+                            />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Image URL"
+                                variant="standard"
+                                name="image"
+                                onBlur={handleOnBlur}
+                            />
+                            <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Submit</Button>
+                        </form>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Container>
+            </Container>}
+            {isLoading && <CircularProgress />}
+        </Box>
     );
 };
 

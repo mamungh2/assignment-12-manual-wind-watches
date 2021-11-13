@@ -1,6 +1,6 @@
 # MANUAL WIND WATCHES INC
 
-You can visit our live website here 
+You can visit our live website here https://manual-wind-watches.web.app/
 
 ## What are included and what you'll get in this website
 - In this project I have used React as Javascript library for building user interfaces, React router for routing various pages without reloading website, Material ui as html, css and javascript framework. We have used google's firebase technology as our authentication system and website hosting area. Every pages color are eye friendly, so it is very easy to visit our site. We used some image optimized tool so that website can load very fast.

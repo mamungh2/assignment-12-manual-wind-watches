@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Box, Container, Grid, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, Box, Container, Grid, Typography, CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 const ManageAllOrders = () => {
@@ -6,7 +6,7 @@ const ManageAllOrders = () => {
     const [order, setOrder] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://glacial-forest-82707.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [orders]);
@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure to delete this order?');
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://glacial-forest-82707.herokuapp.com/orders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -27,12 +27,12 @@ const ManageAllOrders = () => {
     }
 
     const handleUpdateStatus = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`)
+        fetch(`https://glacial-forest-82707.herokuapp.com/orders/${id}`)
             .then(res => res.json())
             .then(data => setOrder(data))
 
         order.status = "approved";
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://glacial-forest-82707.herokuapp.com/orders/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -15,7 +15,7 @@ const Product = ({ product }) => {
     const handleDelete = () => {
         const proceed = window.confirm('Are you sure to delete this product?');
         if (proceed) {
-            fetch(`http://localhost:5000/products/${_id}`, {
+            fetch(`https://glacial-forest-82707.herokuapp.com/products/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

@@ -5,7 +5,8 @@ import useAuth from '../../../hooks/useAuth';
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user, isLoading, admin } = useAuth();
-    if (isLoading) { return <CircularProgress color="success" /> }
+    if (isLoading) { return <CircularProgress sx={{ color: 'red' }} /> }
+    if (!admin) { return '' }
     return (
         <Route
             {...rest}

@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const [orderData, setOrderData] = useState(initialData);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://glacial-forest-82707.herokuapp.com/products/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, []);
@@ -38,7 +38,7 @@ const PlaceOrder = () => {
             orderTime: new Date().toDateString()
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://glacial-forest-82707.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

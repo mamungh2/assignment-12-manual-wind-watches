@@ -5,7 +5,7 @@ const DashboardHome = () => {
     return (
         <div>
             <Typography variant="h3">
-                This is dashboard home
+                Welcome to Dashboard.
             </Typography>
         </div>
     );
